@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Notes on Calculus}
+\author{Me}
+
+\begin{document}
+
+\maketitle
+
+\section{Derivatives}
+The \textbf{derivative} of a function $f(x)$, usually written $f'(x)$, is a \textbf{function} whose output is the instantaneous rate of change of $f$.
+
+\subsection{Example}
+Find the derivative of the function $g(x)=2x^3$.
+\begin{align*}
+g'(x)
+& = \lim_{h \to 0} \frac{g(x+h)-g(x)}{x+h-x} \\
+& = \lim_{h \to 0} \frac{2(x+h)^3-2x^3}{h} \\
+& =\lim_{h \to 0} \frac{2[(x+h)^3-x^3]}{h} \\
+& = 2 \cdot \lim_{h \to 0} \frac{(x+h)^3-x^3}{h} \\
+& = 2 \cdot \lim_{h \to 0} \frac{(x^3+3x^2h+3xh^2+h^3)-x^3}{h} \\
+& = 2 \cdot \lim_{h \to 0} \frac{3x^2h+3xh^2+h^3}{h} \\
+& = 2 \cdot \lim_{h \to 0} 3x^2+3xh+h^2 \\
+& = 2 \cdot 3x^2+3x(0)+0^2 \\
+& = 2 \cdot 3x^2 \\
+& = \boxed{6x^2}
+\end{align*}
+
+As an extension: At the point $(2, 16)$, the gradient/slope/instantaneous rate of change of $g$ is $6(2)^2=6\cdot4=\boxed{24}$.
+
+An important note that got written on the board: ``$f'(a)$ is the slope of the line tangent to $f$ at the point $(a, f(a))$.''
+
+\section{Integration}
+Yes. This is words.
+\end{document}
