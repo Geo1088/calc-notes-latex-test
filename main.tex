@@ -1,37 +1,184 @@
-\documentclass{article}
+\documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{amsmath, multicol, xcolor}
+% \usepackage[]{geometry}
 
 \title{Notes on Calculus}
-\author{Me}
+\author{}
+\date{}
 
 \begin{document}
 
 \maketitle
 
+\begin{abstract}
+    Calculus is pretty neat, yo.
+\end{abstract}
+
 \section{Derivatives}
-The \textbf{derivative} of a function $f(x)$, usually written $f'(x)$, is a \textbf{function} whose output is the instantaneous rate of change of $f$.
+The \textbf{derivative} of a function $f(x)$, usually written $f'(x)$, is a \textbf{function} whose output is the instantaneous rate of change of $f$. It is based on the \textbf{average rate of change}, which calculates the slope of the line between two points $(a, f(a))$ and $(b, f(b))$ on the graph of $f$:
+\begin{equation*}
+    \frac{f(b)-f(a)}{b-a}
+\end{equation*}
+
+The instantaneous rate of change at a point $(x, f(x))$ can be found by taking the average rate of change between it and a second point a certain distance $h$ away, $(x+h, f(x+h))$, then letting the value of $h$ approach zero:
+\begin{equation*}
+    \lim_{h \to 0} \frac{f(x+h)-f(x)}{x+h-x}
+\end{equation*}
 
 \subsection{Example}
 Find the derivative of the function $g(x)=2x^3$.
 \begin{align*}
-g'(x)
-& = \lim_{h \to 0} \frac{g(x+h)-g(x)}{x+h-x} \\
-& = \lim_{h \to 0} \frac{2(x+h)^3-2x^3}{h} \\
-& =\lim_{h \to 0} \frac{2[(x+h)^3-x^3]}{h} \\
-& = 2 \cdot \lim_{h \to 0} \frac{(x+h)^3-x^3}{h} \\
-& = 2 \cdot \lim_{h \to 0} \frac{(x^3+3x^2h+3xh^2+h^3)-x^3}{h} \\
-& = 2 \cdot \lim_{h \to 0} \frac{3x^2h+3xh^2+h^3}{h} \\
-& = 2 \cdot \lim_{h \to 0} 3x^2+3xh+h^2 \\
-& = 2 \cdot 3x^2+3x(0)+0^2 \\
-& = 2 \cdot 3x^2 \\
-& = \boxed{6x^2}
+    g'(x)
+    &= \lim_{h \to 0} \frac{g(x+h)-g(x)}{x+h-x} \\
+    &= \lim_{h \to 0} \frac{2(x+h)^3-2x^3}{h} \\
+    &= \lim_{h \to 0} \frac{2[(x+h)^3-x^3]}{h} \\
+    &= 2 \cdot \lim_{h \to 0} \frac{(x+h)^3-x^3}{h} \\
+    &= 2 \cdot \lim_{h \to 0} \frac{(x^3+3x^2h+3xh^2+h^3)-x^3}{h} \\
+    &= 2 \cdot \lim_{h \to 0} \frac{3x^2h+3xh^2+h^3}{h} \\
+    &= 2 \cdot \lim_{h \to 0} 3x^2+3xh+h^2 \\
+    &= 2 \cdot 3x^2+3x(0)+0^2 \\
+    &= 2 \cdot 3x^2 \\
+    &= \boxed{6x^2}
 \end{align*}
 
 As an extension: At the point $(2, 16)$, the gradient/slope/instantaneous rate of change of $g$ is $6(2)^2=6\cdot4=\boxed{24}$.
 
 An important note that got written on the board: ``$f'(a)$ is the slope of the line tangent to $f$ at the point $(a, f(a))$.''
 
-\section{Integration}
-Yes. This is words.
+\subsection{A table of examples}
+$$\begin{array}{r|l}
+    y & \frac{dy}{dx} \\ \hline
+    x^2 & 2x \\
+    4x^5 & 20x^4 \\
+    x^3+2x^2-x & 3x^2+2x-1
+\end{array}$$
+(Note: $\frac{dy}{dx}$ or $\frac{d}{dx}(y)$ means ``the derivative of y.'')
+
+\subsection{Power Rule}
+If we have some function $f(x)=ax^n$, the derivative can be found thus:
+\begin{equation*}
+    f'(x)=n\cdot ax^{n-1}
+\end{equation*}
+
+\subsection{More examples}
+Find $\frac{d}{dx}[2x^{-3}-\frac{4}{x}]$.
+\begin{equation*}
+    \frac{d}{dx}[2x^{-3}-\frac{4}{x}] = -6x^{-4}+4x^{-2}
+\end{equation*}
+
+Let $f(x)=3x(x^2+2x-1)$.
+
+a) Expand $f$.
+\begin{equation*}
+    3x^3+6x^2-3x
+\end{equation*}
+
+b) Find $f'(x)$.
+\begin{equation*}
+    9x^2+12x-3
+\end{equation*}
+
+c) Write the equation of the line tangent to $f$ at the point $(2, f(2))$.
+\begin{align*}
+    \text{Point: } & (2, f(2)) = (2, 24+24-6)=(2, 42) \\
+    \text{Slope: } & f'(2)=36+24-3=57
+\end{align*}
+\begin{equation*}
+    y-42=57(x-2)
+\end{equation*}
+
+\subsection{Some other types of derivatives}
+$$\begin{array}{r|ll}
+    f(x)=y & f'(x)=\frac{dy}{dx} \\ \hline
+    \ln x & \frac{1}{x}\\
+    e^x & e^x\\
+    \sin x & \cos x & \text{Given in formula book} \\
+    \cos x & -\sin x \\
+    \tan x & \sec^2 x \\ \hline
+    \sec x & \sec x \cdot \tan x \\
+    \csc x & - \csc x \cdot \cot x & \text{Not given in formula book}\\
+    \cot x & -\csc^2 x \\
+\end{array}$$
+Questions that mean the same thing:
+\begin{itemize}
+    \item Find $f'(a)$
+    \item Find $\frac{dy}{dx}$ when $x=a$
+    \item Find IROC of $f$ at $x=a$
+    \item Find the slope of the line tangent to $f$ at $x=a$
+\end{itemize}
+
+\subsection{Product rule}
+We have two equations:
+\begin{align*}
+    f(x) &= (x+3)(x-1) \\
+    &= x^2+2x-3 \\
+    g(x) &= e^x\sin x
+\end{align*}
+Deriving $f$ is easy:
+\begin{align*}
+    f'(x) &=2x^1+2x^0+0 \\
+    &=2x+2
+\end{align*}
+
+$g$ is as simplified as it can be, and we don't have  good way to derive it. How can we do it? We can use the power rule, that's how! First, let's find the derivative of the product of two generic functions:
+\begin{align*}
+    & \frac{d}{dx}f(x)g(x) \\
+    &= \lim_{h \to 0} \frac{f(x+h)g(x+h)-f(x)g(x)}{(x+h)-x} \\
+    &= \lim_{h \to 0} \frac{f(x+h)g(x+h){\color{red}-f(x+h)g(x)+f(x+h)g(x)}-f(x)g(x)}{(x+h)-x} \\
+    &= \lim_{h \to 0} \frac{f(x+h)[g(x+h)-g(x)] + g(x)[f(x+h)-f(x)]}{h} \\
+    &= \lim_{h \to 0} \frac{f(x+h)[g(x+h)-g(x)]}{h} + \lim_{h \to 0} \frac{g(x)[f(x+h)-f(x)]}{h} \\
+    &= \lim_{h \to 0} f(x+h)\frac{g(x+h)-g(x)}{h} + \lim_{h \to 0} g(x)\frac{f(x+h)-f(x)}{h} \\
+    &= f(x+h) \cdot \lim_{h \to 0} \frac{g(x+h)-g(x)}{h}+g(x)\lim_{h \to 0}\frac{f(x+h)-f(x)}{h} \\
+    &= \boxed{f(x) \cdot g'(x) + g(x) \cdot f'(x)}
+\end{align*}
+
+So now we can find the derivative of $g$:
+\begin{align*}
+    g'(x) &= \frac{de^x}{dx}\sin x | \frac{d\sin x}{dx}e^x \\
+    &= \boxed{e^x \sin x + e^x \cos x}
+\end{align*}
+
+Another example: Given $h(x)=(\ln x)(3x^2+7x-2)$, find $h'(x)$.
+\begin{align*}
+    f(x) &=\ln x \\
+    g(x) &= 3x^2+7x-2 \\
+    h'(x) &= f(x)\cdot g'(x) + g(x) \cdot f'(x) \\
+    &= 
+\end{align*}
+
+\subsection{Quotient rule}
+And now we have another thing. This time I'll just write it down.
+\begin{equation*}
+    \frac{d}{dx}[\frac{f(x)}{g(x)}] = \frac{f'(x)g(x)-g'(x)f(x)}{g(x)^2}
+\end{equation*}
+
+Example:
+\begin{align*}
+    h(x) &= \frac{x^2+3x-2}{2x+1} \\
+    f(x) &= x^2+3x-2 \\
+    g(x) &= 2x+1 \\
+    h'(x) &= \hdots
+\end{align*}
+
+Another:
+\begin{align*}
+    f(x) &= \sin x \\
+    g(x) &= \cos x \\
+    h(x) &= \frac{f(x)}{g(x)} \\
+    h'(x) &= \frac{(\cos x)(\cos x) - (-\sin x)(\sin x)}{(\cos x)^2} \\
+    &= \frac{\cos^2 x + \sin^2 x}{\cos^2 x} \\
+    &= \frac{1}{\cos^2 x} \\
+    &= \boxed{\sec^2 x}
+\end{align*}
+
+We can also use the quotient rule to show that the power rule works:
+\begin{align*}
+    f(x) &= \frac{1}{x} = x^{-1} \\
+    f'(x) &= -1x^{-2} & \text{ (via the power rule)} \\
+    f'(x) &= \frac{(0)(x)-(1)(1)}{(x)^2} \\
+    &= \frac{-1}{x^2} \\
+    &= -1x^{-2} & \text{ (via the quotient rule)}
+\end{align*}
+
 \end{document}
